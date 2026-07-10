@@ -1,6 +1,6 @@
 import sys
 import os
-# Original el/thermoset-extremes version (from GitHub).
+# Original el/thermoset-extremes version.
 sys.path.append('../python_scripts')
 from lattice_generation_codes import generate_lattice_sys3
 from crosslinking_codes2 import crosslink_sys3
