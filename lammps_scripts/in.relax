@@ -1,5 +1,4 @@
-# Kremer-Grest polymer model in LAMMPS
-# Used only by the original el/thermoset-extremes workflow (run_sys{1,2,3}_elth.py).
+# Used by the original el/thermoset-extremes workflow (run_sys{1,2,3}_elth.py).
 # The crosslink-percent sweep workflow uses in.relax_long instead.
 
 units lj
