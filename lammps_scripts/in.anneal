@@ -1,8 +1,3 @@
-# Final version (confirmed correct per project owner) - run 5000 steps.
-# GitHub's original in.anneal (run 3000 steps) has been dropped as superseded.
-# NOTE: velocity seed differs per system in the original per-sys copies:
-#   sys1 = 87200, sys2 = 87287, sys3 = 12345.
-
 units lj
 atom_style full
 dimension 3
@@ -14,10 +9,9 @@ bond_style fene
 read_data tmp.dat
 
 pair_coeff * * 1.0 1.0 2.5
-#pair_coeff 3 3 1.0 1.0 2.5
 
 bond_coeff * 30.0 1.5 1.0 1.0
-#bond_coeff 3 100.0 1.5 1.0 1.0
+#bond_coeff 3 100.0 1.5 1.0 1.0 #for running k = 30, 100
 
 special_bonds fene
 

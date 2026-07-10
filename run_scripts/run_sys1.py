@@ -1,7 +1,7 @@
 import sys
 import os
 import re
-# Crosslink-percent sweep version (default/active workflow).
+# Crosslink-percent sweep version.
 sys.path.append('../python_scripts')
 from lattice_generation_codes import generate_lattice_sys1
 from crosslinking_codes2 import crosslink_sys1_mod

@@ -1,8 +1,6 @@
 # Crosslink-percent sweep workflow only, sys1 and sys2 (the 0%-crosslink /
 # pure-elastomer extreme before stepping up through the sweep). sys3 has no
-# equivalent file. No GitHub/el-thermoset counterpart.
-# NOTE: velocity seed differs per system in the original per-sys copies:
-#   sys1 = 87200, sys2 = 87287.
+# equivalent file since sys3 elastomer is already pre-set as diamond architecture.
 
 units lj
 atom_style full

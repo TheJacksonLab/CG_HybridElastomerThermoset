@@ -1,4 +1,4 @@
-# Original el/thermoset-extremes version (from GitHub). See in.deform for
+# El/thermoset-extremes version. See in.deform for
 # the crosslink-percent sweep version (different run lengths and neighbor
 # bin size: 200/100000 steps + neighbor 0.5 bin here vs 1000/60000 + neighbor
 # 1.0 bin there).

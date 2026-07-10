@@ -3,8 +3,6 @@
 # - crosslink-percent sweep workflow: filenames get rewritten per percentage
 #   by run_sys{1,2,3}.py (test_ck_NNN.dat / relax_deform_NNN.dat). Shown here
 #   as last run (percent = 100); the running copy gets edited in place.
-# NOTE: velocity seed differs per system in the crosslink-percent copies:
-#   sys1 = 87200, sys2 = 87287, sys3 = 12345. GitHub original uses seed 87287.
 
 units lj
 atom_style full

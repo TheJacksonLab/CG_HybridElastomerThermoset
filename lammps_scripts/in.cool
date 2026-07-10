@@ -1,9 +1,4 @@
-# Final version (confirmed correct per project owner) - 2-stage cooling
-# protocol: high-temperature equilibration (500000 steps) then cooling ramp.
-# GitHub's original in.cool (single-stage, reads test_ck.dat directly) has
-# been dropped as superseded.
-# NOTE: velocity seed differs per system in the original per-sys copies:
-#   sys1 = 87200, sys2 = 87287, sys3 = 12345.
+# High-temperature equilibration (500000 steps) then cooling ramp.
 
 units lj
 atom_style full
@@ -16,7 +11,7 @@ bond_style fene
 read_data relax_deform_100.dat
 pair_coeff * * 1.0 1.0 2.5
 bond_coeff * 30.0 1.5 1.0 1.0
-#bond_coeff 4 100.0 1.5 1.0 1.0
+#bond_coeff 4 100.0 1.5 1.0 1.0 #for running k = 30, 100. Epoxy bond type for sys3 is 4, and that for sys1, sys2 is 3.
 
 special_bonds fene
 
