@@ -1,0 +1,17 @@
+#!/bin/csh
+#$ -N s3_t2_3030
+#$ -cwd
+#$ -o test2t.out
+#$ -e test2t.err
+#$ -pe orte 48
+#$ -l hostname=compute-1-2.local
+#$ -q big.q
+
+#module load anaconda/3-2020.11
+#module load openmpi/3.1.4
+module load anaconda/3-2022.05
+#module load gcc/9.3.0 mpi/openmpi-x86_64
+module load gcc/10.3 openmpi/4.1.1
+
+#/home/shrutii2/.conda/envs/rdkit-env/bin/python run_sys3.py
+/home/shrutii2/.conda/envs/rdkit-env/bin/python run_cool.py

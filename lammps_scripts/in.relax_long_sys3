@@ -1,0 +1,53 @@
+# sys3-only variant of in.relax_long. Identical except it writes relax_el.dat
+# instead of relax.dat.
+
+units           lj
+atom_style      full
+dimension       3
+boundary        p p p
+
+read_data       lattice.dat
+
+pair_style      lj/cut 2.5
+bond_style      fene
+special_bonds   fene
+
+pair_coeff * * 1.0 1.0 2.5
+#pair_coeff 3 3 1.0 1.0 2.5
+
+bond_coeff * 30.0 1.5 1.0 1.0
+#bond_coeff 4 100.0 1.5 1.0 1.0
+
+timestep        0.002
+neighbor        0.5 bin
+neigh_modify    delay 0 every 1 check yes
+
+thermo          1000
+thermo_style    custom step temp press density pe ke etotal vol
+
+minimize        1.0e-4 1.0e-6 1000 10000
+#write_data      minimized.dat
+
+#velocity        all create 1.0 12345 dist gaussian
+#fix             1 all nvt temp 0.1 1.0 0.5
+#run             50000
+#unfix           1
+#write_data      nvt_initial.dat
+
+variable target_density equal 0.85
+variable total_mass equal mass(all)
+variable target_vol equal "v_total_mass / v_target_density"
+variable scale_factor equal "(v_target_vol / vol)^(1.0/3.0)"
+
+fix             2 all nvt temp 1.0 1.0 0.5
+fix             3 all deform 1 x scale ${scale_factor} y scale ${scale_factor} z scale ${scale_factor} remap x
+run             100000
+unfix           2
+unfix           3
+#write_data      deformed.dat
+
+fix             4 all npt temp 1.0 1.0 0.5 iso 1.0 1.0 5.0
+run             100000
+unfix           4
+
+write_data      relax_el.dat

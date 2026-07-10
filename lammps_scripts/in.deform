@@ -1,0 +1,47 @@
+# Crosslink-percent sweep version (default/active workflow). See
+# in.deform_elth for the original el/thermoset-extremes version (different
+# run lengths and neighbor bin size).
+
+units lj
+atom_style full
+dimension 3
+boundary p p p
+
+pair_style lj/cut 2.5
+bond_style fene
+
+read_data relax_deform.dat
+
+pair_coeff * * 1.0 1.0 2.5
+#pair_coeff 3 3 1.0 1.0 2.5
+
+bond_coeff * 30.0 1.5 1.0 1.0
+#bond_coeff 3 30.0 1.5 1.0 1.0
+
+special_bonds fene
+
+timestep 0.002
+
+# Neighbor list
+neighbor 0.5 bin
+neigh_modify delay 0 every 1 check yes
+
+thermo_style    custom step temp density pe ke etotal enthalpy press pxx pyy pzz pxy pxz pyz lx ly lz xy yz xz
+thermo          100
+
+dump            1 all custom 1000 dump_relax.data id mol type x y z
+dump_modify     1 sort id
+
+velocity all scale 1.0
+
+fix             1 all deform 1 x trate 0.005 remap x
+fix             2 all npt temp 1.0 1.0 0.5 y 0 0 5 z 0 0 5
+run             200
+unfix           2
+unfix 		1
+
+fix 5 all npt temp 1.0 1.0 0.5 y 0 0 5 z 0 0 5
+
+run 100000
+
+write_data      tmp.dat

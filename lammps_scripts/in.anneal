@@ -1,0 +1,43 @@
+# Final version (confirmed correct per project owner) - run 5000 steps.
+# GitHub's original in.anneal (run 3000 steps) has been dropped as superseded.
+# NOTE: velocity seed differs per system in the original per-sys copies:
+#   sys1 = 87200, sys2 = 87287, sys3 = 12345.
+
+units lj
+atom_style full
+dimension 3
+boundary p p p
+
+pair_style lj/cut 2.5
+bond_style fene
+
+read_data tmp.dat
+
+pair_coeff * * 1.0 1.0 2.5
+#pair_coeff 3 3 1.0 1.0 2.5
+
+bond_coeff * 30.0 1.5 1.0 1.0
+#bond_coeff 3 100.0 1.5 1.0 1.0
+
+special_bonds fene
+
+timestep 0.002
+
+# Neighbor list
+neighbor 0.5 bin
+neigh_modify delay 0 every 1 check yes
+
+thermo_style    custom step temp density pe ke etotal enthalpy press vol
+thermo          1000
+
+#dump            1 all custom 10000 dump_relax.data id mol type x y z
+#dump_modify     1 sort id
+
+# Initializiation
+velocity all create 1.5 87200
+
+fix             1 all npt temp 1.5 1.0 0.5 iso 1 1 5
+run             5000
+unfix           1
+
+write_data      anneal.dat

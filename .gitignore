@@ -1,0 +1,13 @@
+.DS_Store
+*.dat
+*.data
+*.csv
+*.dump
+log.lammps
+out_*
+test.out
+test.err
+test2t.out
+test2t.err
+__pycache__/
+*.pyc

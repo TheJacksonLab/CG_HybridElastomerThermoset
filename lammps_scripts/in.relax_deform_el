@@ -1,0 +1,47 @@
+# Crosslink-percent sweep workflow only, sys1 and sys2 (the 0%-crosslink /
+# pure-elastomer extreme before stepping up through the sweep). sys3 has no
+# equivalent file. No GitHub/el-thermoset counterpart.
+# NOTE: velocity seed differs per system in the original per-sys copies:
+#   sys1 = 87200, sys2 = 87287.
+
+units lj
+atom_style full
+dimension 3
+boundary p p p
+
+pair_style lj/cut 2.5
+bond_style fene
+
+read_data test_ck_0.dat
+
+pair_coeff * * 1.0 1.0 2.5
+#pair_coeff 3 3 1.0 1.0 2.5
+
+bond_coeff * 30.0 1.5 1.0 1.0
+#bond_coeff 3 100.0 1.5 1.0 1.0
+
+special_bonds fene
+
+timestep 0.002
+
+# Neighbor list
+neighbor 0.5 bin
+neigh_modify delay 0 every 1 check yes
+
+thermo_style    custom step temp density pe ke etotal enthalpy press vol
+thermo          1000
+
+min_style fire
+minimize 1.0e-6 1.0e-8 1000 10000
+
+dump            1 all custom 1000 dump_relax.data id mol type x y z
+dump_modify     1 sort id
+
+# Initializiation
+velocity all create 1.0 87200
+
+fix             1 all npt temp 1.0 1.0 0.5 iso 1 1 5
+run             100000
+unfix           1
+
+write_data      relax_deform_el.dat
