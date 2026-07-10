@@ -1,11 +1,9 @@
 # CG Hybrid Monomer System
-<img width="1408" height="1199" alt="TOC" src="https://github.com/user-attachments/assets/c08ced46-3e08-4fd8-bc0a-62ab84c7067b" />
+[TOC.pdf](https://github.com/user-attachments/files/29896426/TOC.pdf)
 
 Coarse-grained molecular dynamics (LAMMPS) code for simulating a hybrid epoxy-acrylate dual-cure polymer network.
 
 This repository accompanies the paper *"Computational Exploration of the Structure and Mechanical Behaviour of Hybrid Epoxy-Acrylate Dual-Cure Systems"* (Iyer, Yu, Page, and Jackson). The model is based on a hybrid monomer (ECA) that carries both an acrylate and an epoxy functional group, crosslinked with a tetrafunctional acrylate crosslinker (TEGDA). Violet light drives acrylate-only (radical) polymerization to give a loosely crosslinked elastomer; UV light drives both acrylate and epoxy (radical + cationic) polymerization to give a densely crosslinked thermoset. This code simulates that whole space computationally: the two limiting cases (pure elastomer and pure thermoset) as well as a full sweep across epoxy crosslink percentage between them, tracking structural, thermal (Tg), and mechanical evolution as the network densifies.
-
-Paper: *(link to be added)*
 
 ## Model systems
 
