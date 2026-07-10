@@ -1,5 +1,6 @@
-# Used by both workflows for sys1/sys2 (writes relax.dat).
-# sys3 uses a variant that writes relax_el.dat instead - see in.relax_long_sys3.
+# Used by sys1/sys2 (writes relax.dat), and by sys3 (run_sys3.py renames
+# the output relax.dat -> relax_deform_0.dat afterward, matching the
+# 0%-crosslink / elastomer naming used across sys1/sys2/sys3).
 
 units           lj
 atom_style      full

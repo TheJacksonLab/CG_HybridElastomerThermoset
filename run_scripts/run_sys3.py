@@ -14,19 +14,20 @@ run_lammps = 'mpirun -np 48 /home/shrutii2/lammps_29Aug2024/build_scruggs/lmp_sc
 #generate_lattice_sys3(chain_length=100, num_cells=2, output_file='lattice.dat')
 
 # Relax the lattice
-#os.system('{} -in in.relax_long > out_relax_el'.format(run_lammps))
+#os.system('{} -in in.relax_long > out_relax'.format(run_lammps))
+#os.system('mv relax.dat relax_deform_0.dat')  # consistent 0%-crosslink / elastomer naming across sys1/sys2/sys3
 
 # Crosslinking the system for the different B percentages
-#crosslink_sys3('relax_el.dat', 'test_ck_10.dat', '{} -in in.anneal'.format(run_lammps), percentage_ck_B=0.1, functionality_B=3, ck_dis_B=1.2)
-#crosslink_sys3('relax_el.dat', 'test_ck_20.dat', '{} -in in.anneal'.format(run_lammps), percentage_ck_B=0.2, functionality_B=3, ck_dis_B=1.2)
-#crosslink_sys3('relax_el.dat', 'test_ck_30.dat', '{} -in in.anneal'.format(run_lammps), percentage_ck_B=0.3, functionality_B=3, ck_dis_B=1.2)
-#crosslink_sys3('relax_el.dat', 'test_ck_40.dat', '{} -in in.anneal'.format(run_lammps), percentage_ck_B=0.4, functionality_B=3, ck_dis_B=1.2)
-#crosslink_sys3('relax_el.dat', 'test_ck_50.dat', '{} -in in.anneal'.format(run_lammps), percentage_ck_B=0.5, functionality_B=3, ck_dis_B=1.2)
-#crosslink_sys3('relax_el.dat', 'test_ck_60.dat', '{} -in in.anneal'.format(run_lammps), percentage_ck_B=0.6, functionality_B=3, ck_dis_B=1.2)
-#crosslink_sys3('relax_el.dat', 'test_ck_70.dat', '{} -in in.anneal'.format(run_lammps), percentage_ck_B=0.7, functionality_B=3, ck_dis_B=1.2)
-#crosslink_sys3('relax_el.dat', 'test_ck_80.dat', '{} -in in.anneal'.format(run_lammps), percentage_ck_B=0.8, functionality_B=3, ck_dis_B=1.2)
-#crosslink_sys3('relax_el.dat', 'test_ck_90.dat', '{} -in in.anneal'.format(run_lammps), percentage_ck_B=0.9, functionality_B=3, ck_dis_B=1.2)
-#crosslink_sys3('relax_el.dat', 'test_ck_100.dat', '{} -in in.anneal'.format(run_lammps), percentage_ck_B=1, functionality_B=3, ck_dis_B=1.2)
+#crosslink_sys3('relax_deform_0.dat', 'test_ck_10.dat', '{} -in in.anneal'.format(run_lammps), percentage_ck_B=0.1, functionality_B=3, ck_dis_B=1.2)
+#crosslink_sys3('relax_deform_0.dat', 'test_ck_20.dat', '{} -in in.anneal'.format(run_lammps), percentage_ck_B=0.2, functionality_B=3, ck_dis_B=1.2)
+#crosslink_sys3('relax_deform_0.dat', 'test_ck_30.dat', '{} -in in.anneal'.format(run_lammps), percentage_ck_B=0.3, functionality_B=3, ck_dis_B=1.2)
+#crosslink_sys3('relax_deform_0.dat', 'test_ck_40.dat', '{} -in in.anneal'.format(run_lammps), percentage_ck_B=0.4, functionality_B=3, ck_dis_B=1.2)
+#crosslink_sys3('relax_deform_0.dat', 'test_ck_50.dat', '{} -in in.anneal'.format(run_lammps), percentage_ck_B=0.5, functionality_B=3, ck_dis_B=1.2)
+#crosslink_sys3('relax_deform_0.dat', 'test_ck_60.dat', '{} -in in.anneal'.format(run_lammps), percentage_ck_B=0.6, functionality_B=3, ck_dis_B=1.2)
+#crosslink_sys3('relax_deform_0.dat', 'test_ck_70.dat', '{} -in in.anneal'.format(run_lammps), percentage_ck_B=0.7, functionality_B=3, ck_dis_B=1.2)
+#crosslink_sys3('relax_deform_0.dat', 'test_ck_80.dat', '{} -in in.anneal'.format(run_lammps), percentage_ck_B=0.8, functionality_B=3, ck_dis_B=1.2)
+#crosslink_sys3('relax_deform_0.dat', 'test_ck_90.dat', '{} -in in.anneal'.format(run_lammps), percentage_ck_B=0.9, functionality_B=3, ck_dis_B=1.2)
+#crosslink_sys3('relax_deform_0.dat', 'test_ck_100.dat', '{} -in in.anneal'.format(run_lammps), percentage_ck_B=1, functionality_B=3, ck_dis_B=1.2)
 
 # Relax the system before deformation
 #os.system('{} -in in.relax_deform > out_relax_deform'.format(run_lammps))
