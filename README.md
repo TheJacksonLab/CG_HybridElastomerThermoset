@@ -1,10 +1,9 @@
 # CG Hybrid Monomer System
+<img width="1461" height="1247" alt="TOC" src="https://github.com/user-attachments/assets/44d606b4-5062-47ec-a45d-5a0a32029dbb" />
 
-Coarse-grained molecular dynamics (LAMMPS) code for simulating a hybrid epoxy-acrylate dual-cure polymer network, spanning the elastomeric and thermoset regimes and everything in between.
+Coarse-grained molecular dynamics (LAMMPS) code for simulating a hybrid epoxy-acrylate dual-cure polymer network.
 
 This repository accompanies the paper *"Computational Exploration of the Structure and Mechanical Behaviour of Hybrid Epoxy-Acrylate Dual-Cure Systems"* (Iyer, Yu, Page, and Jackson). The model is based on a hybrid monomer (ECA) that carries both an acrylate and an epoxy functional group, crosslinked with a tetrafunctional acrylate crosslinker (TEGDA). Violet light drives acrylate-only (radical) polymerization to give a loosely crosslinked elastomer; UV light drives both acrylate and epoxy (radical + cationic) polymerization to give a densely crosslinked thermoset. This code simulates that whole space computationally: the two limiting cases (pure elastomer and pure thermoset) as well as a full sweep across epoxy crosslink percentage between them, tracking structural, thermal (Tg), and mechanical evolution as the network densifies.
-
-Paper: *(link to be added)*
 
 ## Model systems
 
@@ -16,7 +15,7 @@ Three initial network architectures are used throughout, representing increasing
 
 Each system is run in two ways:
 
-1. **el/thermoset extremes** — the two limiting cases only: pure elastomer (acrylate-only crosslinking) and pure thermoset (acrylate + epoxy crosslinking), matching the two experimental UV/violet-light curing pathways.
+1. **el/thermoset extremes** — the two limiting cases only: pure elastomer (acrylate-only crosslinking) and pure thermoset (acrylate + epoxy crosslinking), matching the two experimental violet/UV-light curing pathways.
 2. **crosslink-percent sweep** — a full sweep of epoxy crosslink percentage from 0% to 100% in 10% increments, tracking how structure and mechanics evolve continuously between the elastomer and thermoset limits.
 
 ## Repository structure
@@ -24,7 +23,7 @@ Each system is run in two ways:
 ```
 lammps_scripts/    LAMMPS input scripts for lattice relaxation, crosslinking anneal steps,
                    pre-deformation relaxation, and stepwise tensile deformation.
-                   Most scripts are shared between both workflows; where the crosslink-percent
+                   Most scripts are shared between both workflows - where the crosslink-percent
                    sweep requires different run lengths/protocol (in.deform, in.deform_opt),
                    the el/thermoset-extremes version is suffixed "_elth".
 
@@ -32,14 +31,13 @@ run_scripts/       Python driver scripts that run the full pipeline per system (
                    lattice generation -> relaxation -> crosslinking -> pre-deformation relaxation
                    -> stepwise deformation (-> cooling, for Tg estimation). The default scripts
                    run the crosslink-percent sweep; "_elth" variants run the el/thermoset extremes.
-                   met2_sys*.submit are cluster (SGE) job submission scripts.
 
 python_scripts/    Core simulation logic imported by run_scripts:
                      lattice_generation_codes.py  - builds the initial sys1/sys2/sys3 lattices
                      crosslinking_codes2.py       - crosslinking procedures for all three systems
                      deform_codes.py              - stepwise deformation driver and stress extraction
 
-utils/             Shared low-level utilities imported by python_scripts:
+utils/             Shared utils imported by python_scripts:
                      extract_local_str.py - LAMMPS data/dump file I/O, local structure extraction
                      my_common.py         - general utilities (periodic-boundary distances, file I/O,
                                             structural analysis helpers)
